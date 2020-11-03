@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 // import Product from "./Tasks/Product";
-import ToDo from "./Tasks/ToDo";
+import ToDo from "./Components/ToDo";
 
 function App() {
   return (

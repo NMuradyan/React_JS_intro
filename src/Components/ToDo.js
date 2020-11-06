@@ -1,5 +1,7 @@
 import React from "react";
-import Task from "./Task";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Task from "./task/Task";
+import { Button, InputGroup, FormControl, Container} from "react-bootstrap";
 
 class ToDo extends React.Component {
   state = {
@@ -27,19 +29,37 @@ class ToDo extends React.Component {
     const { inputValue } = this.state;
     return (
       <div>
-        <input
+          <Container>
+        {/* <input
           onChange={this.handleChange}
           value={inputValue}
           type="text"
           placeholder="add task"
-        />
+        /> */}
 
-        <input onClick={this.addTask} type="button" value="Add" />
+        {/* <input onClick={this.addTask} type="button" value="Add" /> */}
+        
+          <InputGroup>
+            <FormControl
+              onChange={this.handleChange}
+              value={inputValue}
+              placeholder="add task"
+              aria-label="add task"
+              aria-describedby="basic-addon2"
+            />
+            <InputGroup.Append>
+              <Button onClick={this.addTask} variant="info">
+                Add
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        
         <ol>
           {this.state.tasks.map((task, index) => {
             return <Task key={index} data={task} />;
           })}
         </ol>
+        </Container>
       </div>
     );
   }

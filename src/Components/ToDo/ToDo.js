@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./todo.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import idGenerator from "../../Helpers/_id.Generator";
-// import Task from "./task/Task";
+import idGenerator from "../../Helpers/idGenerator";
+import Task from "../task/Task";
 import {
   Button,
   InputGroup,
@@ -10,15 +10,13 @@ import {
   Container,
   Row,
   Col,
-  Card,
 } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 class ToDo extends React.Component {
   state = {
     tasks: [],
     inputValue: "",
+    selectedTasks: new Set(),
   };
 
   handleChange = (event) => {
@@ -58,27 +56,42 @@ class ToDo extends React.Component {
     });
   };
 
+  handleCheck = (taskId) => {
+    const selectedTasks = new Set(this.state.selectedTasks);
+    if (selectedTasks.has(taskId)) {
+      selectedTasks.delete(taskId);
+    } else {
+      selectedTasks.add(taskId);
+    }
+    this.setState({
+      selectedTasks,
+    });
+  };
+
+  removeSelected = () => {
+    let tasks = [...this.state.tasks];
+
+    this.state.selectedTasks.forEach((id) => {
+      tasks = tasks.filter((task) => task._id !== id);
+    });
+
+    this.setState({
+      tasks,
+      selectedTasks: new Set()
+    });
+  };
+
   render() {
-    const { inputValue, tasks } = this.state;
-    const taskCard = tasks.map((task, _id) => {
+    const { inputValue, tasks, selectedTasks } = this.state;
+    const taskCard = tasks.map((task) => {
       return (
-        <Col key={_id} xs={12} sm={6} md={4} lg={3} xl={2}>
-          <Card className={styles.taskStyle}>
-            <Card.Body>
-              <Card.Title className={styles.cardTitle}>{task.text.slice(0, 8) + "..."}</Card.Title>
-              <Card.Text>{task.text}</Card.Text>
-              <Button variant="warning" className={styles.actionButton}>
-                <FontAwesomeIcon icon={faEdit} />
-              </Button>
-              <Button
-                variant="danger"
-                className={styles.actionButton}
-                onClick={() => this.removeTask(task._id)}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
-            </Card.Body>
-          </Card>
+        <Col key={task._id} xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Task
+            data={task}
+            onRemove={this.removeTask}
+            onCheck={this.handleCheck}
+            disabled={!!selectedTasks.size}
+          />
         </Col>
       );
     });
@@ -96,12 +109,14 @@ class ToDo extends React.Component {
                   aria-label="add task"
                   aria-describedby="basic-addon2"
                   onKeyDown={this.handleKeyDown}
+                  disabled={!!selectedTasks.size}
                 />
                 <InputGroup.Append>
                   <Button
                     onClick={this.addTask}
                     variant="info"
                     onKeyDown={this.handleKeyDown}
+                    disabled={!!selectedTasks.size}
                   >
                     Add
                   </Button>
@@ -111,6 +126,17 @@ class ToDo extends React.Component {
           </Row>
 
           <Row>{taskCard}</Row>
+          <Row className="justify-content-center">
+            <Col xs={4}>
+              <Button
+                onClick={this.removeSelected}
+                variant="outline-danger"
+                disabled={!selectedTasks.size}
+              >
+                Remove selected
+              </Button>
+            </Col>
+          </Row>
         </Container>
       </div>
     );

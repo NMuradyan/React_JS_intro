@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import styles from "./task.module.css";
 
-class Task extends React.Component {
+class Task extends React.PureComponent {
   state = {
     checked: false,
   };

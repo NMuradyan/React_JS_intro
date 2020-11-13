@@ -12,7 +12,7 @@ import {
   Col,
 } from "react-bootstrap";
 
-class ToDo extends React.Component {
+class ToDo extends React.PureComponent {
   state = {
     tasks: [],
     inputValue: "",

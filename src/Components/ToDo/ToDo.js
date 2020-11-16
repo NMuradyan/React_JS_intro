@@ -3,49 +3,29 @@ import styles from "./todo.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import idGenerator from "../../Helpers/idGenerator";
 import Task from "../task/Task";
-import {
-  Button,
-  InputGroup,
-  FormControl,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import AddTask from "../addTask/AddTask";
+import Confirm from "../Confirm/Confirm";
+import EditTaskModal from "../editTaskModal/EditTaskModal";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 class ToDo extends React.PureComponent {
   state = {
     tasks: [],
     inputValue: "",
+    showConfirm: false,
     selectedTasks: new Set(),
+    editTask: null,
   };
 
-  handleChange = (event) => {
-    this.setState({
-      inputValue: event.target.value,
-    });
-  };
-
-  handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      this.addTask();
-    }
-  };
-
-  addTask = () => {
-    const { inputValue } = this.state;
-    if (!inputValue) {
-      return;
-    }
-
+  addTask = (value) => {
     const newTask = {
-      text: inputValue,
+      text: value,
       _id: idGenerator(),
     };
 
     const tasks = [newTask, ...this.state.tasks];
     this.setState({
       tasks: tasks,
-      inputValue: "",
     });
   };
 
@@ -77,12 +57,36 @@ class ToDo extends React.PureComponent {
 
     this.setState({
       tasks,
-      selectedTasks: new Set()
+      selectedTasks: new Set(),
+      showConfirm: false,
+    });
+  };
+
+  toggleConfirm = () => {
+    this.setState({
+      showConfirm: !this.state.showConfirm,
+    });
+  };
+
+  toogleEditModal = (task) => {
+    this.setState({
+      editTask: task,
+    });
+  };
+
+  saveEdited = (editedTask) => {
+    const tasks = [...this.state.tasks];
+    let getTaskIndex = tasks.findIndex((task) => task._id === editedTask._id);
+    tasks[getTaskIndex] = editedTask;
+
+    this.setState({
+      tasks: tasks,
+      editTask: null
     });
   };
 
   render() {
-    const { inputValue, tasks, selectedTasks } = this.state;
+    const { tasks, selectedTasks, showConfirm, editTask } = this.state;
     const taskCard = tasks.map((task) => {
       return (
         <Col key={task._id} xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -91,6 +95,7 @@ class ToDo extends React.PureComponent {
             onRemove={this.removeTask}
             onCheck={this.handleCheck}
             disabled={!!selectedTasks.size}
+            onEdit={this.toogleEditModal}
           />
         </Col>
       );
@@ -100,36 +105,12 @@ class ToDo extends React.PureComponent {
       <div>
         <Container className={styles.contStyle}>
           <Row className="justify-content-center">
-            <Col xs={12} sm={10} md={8} lg={6}>
-              <InputGroup className={styles.inputStyle}>
-                <FormControl
-                  onChange={this.handleChange}
-                  value={inputValue}
-                  placeholder="add task"
-                  aria-label="add task"
-                  aria-describedby="basic-addon2"
-                  onKeyDown={this.handleKeyDown}
-                  disabled={!!selectedTasks.size}
-                />
-                <InputGroup.Append>
-                  <Button
-                    onClick={this.addTask}
-                    variant="info"
-                    onKeyDown={this.handleKeyDown}
-                    disabled={!!selectedTasks.size}
-                  >
-                    Add
-                  </Button>
-                </InputGroup.Append>
-              </InputGroup>
+            <Col xs={11} sm={10} md={8} lg={6}>
+              <AddTask onAdd={this.addTask} disabled={!!selectedTasks.size} />
             </Col>
-          </Row>
-
-          <Row>{taskCard}</Row>
-          <Row className="justify-content-center">
-            <Col xs={4}>
+            <Col xs={1} md={4}>
               <Button
-                onClick={this.removeSelected}
+                onClick={this.toggleConfirm}
                 variant="outline-danger"
                 disabled={!selectedTasks.size}
               >
@@ -137,7 +118,22 @@ class ToDo extends React.PureComponent {
               </Button>
             </Col>
           </Row>
+          <Row>{taskCard}</Row>
         </Container>
+        {showConfirm && (
+          <Confirm
+            onSubmit={this.removeSelected}
+            onClose={this.toggleConfirm}
+            count={selectedTasks.size}
+          />
+        )}
+        {!!editTask && (
+          <EditTaskModal
+            data={editTask}
+            onSave={this.saveEdited}
+            onClose={() => this.toogleEditModal(null)}
+          />
+        )}
       </div>
     );
   }

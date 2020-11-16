@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -34,6 +35,7 @@ class Task extends React.PureComponent {
             variant="warning"
             className={styles.actionButton}
             disabled={disabled}
+            onClick={()=>this.props.onEdit(task)}
           >
             <FontAwesomeIcon icon={faEdit} />
           </Button>
@@ -50,5 +52,12 @@ class Task extends React.PureComponent {
     );
   }
 }
+
+Task.propTypes = {
+  onRemove: PropTypes.func.isRequired,
+  onCheck: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  data: PropTypes.object.isRequired,
+};
 
 export default Task;

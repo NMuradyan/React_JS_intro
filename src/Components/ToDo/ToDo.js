@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./todo.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import idGenerator from "../../Helpers/idGenerator";
 import Task from "../task/Task";
 import AddTask from "../addTask/AddTask";
 import Confirm from "../Confirm/Confirm";
@@ -17,24 +16,74 @@ class ToDo extends React.PureComponent {
     editTask: null,
   };
 
-  addTask = (value) => {
-    const newTask = {
-      text: value,
-      _id: idGenerator(),
-    };
+  componentDidMount(){
+    fetch("http://localhost:3001/task", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.error) {
+          throw response.error;
+        }
 
-    const tasks = [newTask, ...this.state.tasks];
-    this.setState({
-      tasks: tasks,
-    });
+        this.setState({
+          tasks: response,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }
+
+  addTask = (info) => {
+    fetch("http://localhost:3001/task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.error) {
+          throw response.error;
+        }
+
+        const tasks = [response, ...this.state.tasks];
+        this.setState({
+          tasks: tasks,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   removeTask = (taskId) => {
-    const newTasks = this.state.tasks.filter((task) => task._id !== taskId);
+    fetch(`http://localhost:3001/task/${taskId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.error) {
+          throw response.error;
+        }
+
+        const newTasks = this.state.tasks.filter((task) => task._id !== taskId);
     this.setState({
       tasks: newTasks,
     });
-  };
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }
 
   handleCheck = (taskId) => {
     const selectedTasks = new Set(this.state.selectedTasks);
@@ -49,17 +98,38 @@ class ToDo extends React.PureComponent {
   };
 
   removeSelected = () => {
-    let tasks = [...this.state.tasks];
+    const body = {
+      tasks: [...this.state.selectedTasks]
+    };
 
-    this.state.selectedTasks.forEach((id) => {
-      tasks = tasks.filter((task) => task._id !== id);
-    });
+    fetch("http://localhost:3001/task", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.error) {
+          throw response.error;
+        }
 
-    this.setState({
-      tasks,
-      selectedTasks: new Set(),
-      showConfirm: false,
-    });
+        let tasks = [...this.state.tasks];
+
+        this.state.selectedTasks.forEach((id) => {
+          tasks = tasks.filter((task) => task._id !== id);
+        });
+    
+        this.setState({
+          tasks,
+          selectedTasks: new Set(),
+          showConfirm: false,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   toggleConfirm = () => {
@@ -75,14 +145,31 @@ class ToDo extends React.PureComponent {
   };
 
   saveEdited = (editedTask) => {
-    const tasks = [...this.state.tasks];
+    fetch(`http://localhost:3001/task/${editedTask._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedTask)
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.error) {
+          throw response.error;
+        }
+
+        const tasks = [...this.state.tasks];
     let getTaskIndex = tasks.findIndex((task) => task._id === editedTask._id);
-    tasks[getTaskIndex] = editedTask;
+    tasks[getTaskIndex] = response;
 
     this.setState({
       tasks: tasks,
-      editTask: null
+      editTask: null,
     });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   render() {

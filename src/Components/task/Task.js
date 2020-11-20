@@ -28,9 +28,9 @@ class Task extends React.PureComponent {
         <Card.Body className={styles.bodyBackground}>
           <input type="checkbox" onClick={this.handleSelected} />
           <Card.Title className={styles.cardTitle}>
-            {task.text.slice(0, 8) + "..."}
+            {task.title}
           </Card.Title>
-          <Card.Text>{task.text}</Card.Text>
+          <Card.Text>{task.description}</Card.Text>
           <Button
             variant="warning"
             className={styles.actionButton}

@@ -34,7 +34,7 @@ export default class EditTaskModal extends React.Component {
       <Modal show={true} onHide={props.onClose} centered>
         <Modal.Header closeButton>
           <Modal.Title className={styles.modalTitleStyle}>
-            Edite Task
+            Edit Task
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -46,7 +46,7 @@ export default class EditTaskModal extends React.Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
+          <Button variant="success" onClick={this.handleSave}>
             Save
           </Button>
           <Button variant="secondary" onClick={props.onClose}>

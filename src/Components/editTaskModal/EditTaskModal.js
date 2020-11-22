@@ -14,14 +14,16 @@ export default class EditTaskModal extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      title: event.target.value,
+      description: event.target.value,
+      title: event.target.value.slice(0, 8) + "...",
     });
   };
 
   handleSave = () => {
-    const { title } = this.state;
+    const { description } = this.state;
+    console.log("title", description);
 
-    if (!title) {
+    if (!description) {
       return;
     }
     this.props.onSave(this.state);
@@ -29,7 +31,7 @@ export default class EditTaskModal extends React.Component {
 
   render() {
     const { props } = this;
-    const { title } = this.state;
+    const { description } = this.state;
     return (
       <Modal show={true} onHide={props.onClose} centered>
         <Modal.Header closeButton>
@@ -41,7 +43,7 @@ export default class EditTaskModal extends React.Component {
           <input
             type="text"
             className={styles.inputStyle}
-            value={title}
+            value={description}
             onChange={this.handleChange}
           />
         </Modal.Body>

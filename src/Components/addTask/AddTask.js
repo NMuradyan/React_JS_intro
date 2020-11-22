@@ -27,9 +27,10 @@ class AddTask extends React.PureComponent {
     }
 
     const task = {
-      title: inputValue
+      title: inputValue.slice(0, 8) + "...",
+      description: inputValue
     };
-    
+
     this.props.onAdd(task);
     this.setState({
       inputValue: "",

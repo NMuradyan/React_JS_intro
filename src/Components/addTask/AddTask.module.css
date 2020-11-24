@@ -1,3 +1,37 @@
 .inputStyle {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+.titleInputStyle{
+    margin: 15px 0;
+  padding: 10px 18px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid #bad1d4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 4px;
+}
+input[name="title"]:focus {
+    border: 3px solid #17a2b8;
+  }
+
+.textareaStyle {
+  margin: 15px 0;
+  padding: 10px 18px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid #bad1d4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 4px;
+}
+textarea[name="description"]:focus {
+  border: 3px solid #17a2b8;
+}
+.titleStyle {
+  font-family: cursive;
+  font-weight: bolder;
+  color: #17a2b8;
 }

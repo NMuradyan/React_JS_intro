@@ -1,16 +1,22 @@
 import React from "react";
-import styles from "./AddTask.module.css";
+import styles from "../addTask/AddTask.module.css";
 import PropTypes from "prop-types";
-import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { Button, FormControl, Modal } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class AddTask extends React.PureComponent {
   state = {
-    inputValue: "",
+    title: "",
+    description: "",
+    date: new Date(),
   };
 
   handleChange = (event) => {
+    let { name, value } = event.target;
+
     this.setState({
-      inputValue: event.target.value,
+      [name]: value,
     });
   };
 
@@ -21,47 +27,61 @@ class AddTask extends React.PureComponent {
   };
 
   addTask = () => {
-    const { inputValue } = this.state;
-    if (!inputValue) {
+    const { title, description } = this.state;
+    if (!title) {
       return;
     }
 
     const task = {
-      title: inputValue.slice(0, 8) + "...",
-      description: inputValue
+      title: title,
+      description: description,
     };
 
     this.props.onAdd(task);
+  };
+
+  handleDateChange = (date) => {
     this.setState({
-      inputValue: "",
+      date,
     });
   };
 
   render() {
-    const { inputValue } = this.state;
-    const { disabled } = this.props;
+    const { onClose } = this.props;
     return (
-      <InputGroup className={styles.inputStyle}>
-        <FormControl
-          onChange={this.handleChange}
-          value={inputValue}
-          placeholder="add task"
-          aria-label="add task"
-          aria-describedby="basic-addon2"
-          onKeyDown={this.handleKeyDown}
-          disabled={disabled}
-        />
-        <InputGroup.Append>
-          <Button
-            onClick={this.addTask}
-            variant="info"
+      <Modal show={true} onHide={onClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title className={styles.titleStyle}>Add new Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FormControl
+            className={styles.titleInputStyle}
+            onChange={this.handleChange}
+            name="title"
+            placeholder="Title"
             onKeyDown={this.handleKeyDown}
-            disabled={disabled}
-          >
+            bsPrefix
+          />
+          <FormControl
+            className={styles.textareaStyle}
+            onChange={this.handleChange}
+            name="description"
+            placeholder="Task text"
+            as="textarea"
+            aria-label="With textarea"
+            bsPrefix
+          />
+          <DatePicker selected={new Date()} onChange={this.handleDateChange} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="info" onClick={this.addTask}>
             Add
           </Button>
-        </InputGroup.Append>
-      </InputGroup>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }

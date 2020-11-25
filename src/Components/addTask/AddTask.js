@@ -53,7 +53,7 @@ class AddTask extends React.PureComponent {
         <Modal.Header closeButton>
           <Modal.Title className={styles.titleStyle}>Add new Task</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.addModalStyle}>
           <FormControl
             className={styles.titleInputStyle}
             onChange={this.handleChange}

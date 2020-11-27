@@ -146,7 +146,6 @@ class ToDo extends React.PureComponent {
   };
 
   saveEdited = (editedTask) => {
-    console.log("editedtask", editedTask);
     fetch(`http://localhost:3001/task/${editedTask._id}`, {
       method: "PUT",
       headers: {

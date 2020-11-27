@@ -2,39 +2,49 @@ import React from "react";
 import styles from "../editTaskModal/editTaskModal.module.css";
 import PropTypes from "prop-types";
 import { Button, Modal, FormControl } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+// import ShowDate from "../../Helpers/ShowDate";
 
 export default class EditTaskModal extends React.Component {
   constructor(props) {
     super(props);
+    const { date } = props.data;
 
     this.state = {
       ...props.data,
+      date: date ? new Date(date) : new Date(),
     };
   }
 
   handleChange = (event) => {
     let { name, value } = event.target;
     this.setState({
-      // description: event.target.value,
-      // title: event.target.value
       [name]: value,
     });
   };
 
   handleSave = () => {
-    const { title, description } = this.state;
-    console.log("title", title);
-    console.log("description", description);
+    const { title, date } = this.state;
 
     if (!title) {
       return;
     }
-    this.props.onSave(this.state);
+    const editedTask = {
+      ...this.state,
+      date: date.toISOString().slice(0, 10),
+    };
+    this.props.onSave(editedTask);
+  };
+
+  handleDateChange = (date) => {
+    this.setState({
+      date,
+    });
   };
 
   render() {
     const { props } = this;
-    const { description, title } = this.state;
+    const { description, title, date } = this.state;
     return (
       <Modal show={true} onHide={props.onClose} centered>
         <Modal.Header closeButton>
@@ -66,6 +76,15 @@ export default class EditTaskModal extends React.Component {
             as="textarea"
             aria-label="With textarea"
             bsPrefix
+          />
+
+          {/* <ShowDate data={this.state.date} onChange={this.handleDateChange} /> */}
+
+          <DatePicker
+            selected={date}
+            onChange={this.handleDateChange}
+            startDate={new Date()}
+            minDate={new Date()}
           />
         </Modal.Body>
         <Modal.Footer>

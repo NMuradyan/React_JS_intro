@@ -4,6 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import styles from "./task.module.css";
+import {formatDate} from '../../Helpers/utils';
 
 class Task extends React.PureComponent {
   state = {
@@ -31,6 +32,8 @@ class Task extends React.PureComponent {
             {task.title}
           </Card.Title>
           <Card.Text>{task.description}</Card.Text>
+          <Card.Text>{formatDate(task.date)}</Card.Text>
+          <Card.Text>{formatDate(task.created_at)}</Card.Text>
           <Button
             variant="warning"
             className={styles.actionButton}

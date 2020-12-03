@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import styles from "./task.module.css";
 import {formatDate} from '../../Helpers/utils';
+import { Link } from "react-router-dom";
 
 class Task extends React.PureComponent {
   state = {
@@ -29,7 +30,9 @@ class Task extends React.PureComponent {
         <Card.Body className={styles.bodyBackground}>
           <input type="checkbox" onClick={this.handleSelected} />
           <Card.Title className={styles.cardTitle}>
+            <Link to={`/task-page/${task._id}`}>
             {task.title}
+            </Link>
           </Card.Title>
           <Card.Text>{task.description}</Card.Text>
           <Card.Text>{formatDate(task.date)}</Card.Text>

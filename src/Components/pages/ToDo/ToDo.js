@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./todo.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Task from "../task/Task";
-import AddTask from "../addTask/AddTask";
-import Confirm from "../Confirm/Confirm";
-import EditTaskModal from "../editTaskModal/EditTaskModal";
+import Task from "../../task/Task";
+import AddTask from "../../addTask/AddTask";
+import Confirm from "../../Confirm/Confirm";
+import EditTaskModal from "../../editTaskModal/EditTaskModal";
 import { Button, Container, Row, Col } from "react-bootstrap";
 
 class ToDo extends React.PureComponent {

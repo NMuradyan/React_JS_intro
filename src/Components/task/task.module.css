@@ -1,0 +1,19 @@
+.taskStyle {
+  margin: 10px auto;
+}
+.actionButton{
+  margin: 5px;
+}
+.cardTitle {
+  color: dimgray;
+  font-family: cursive;
+  font-weight: bolder;
+}
+.bodyBackground{
+  background-color: lightgray;
+}
+.selected{
+  border-style: solid;
+  border-width: 5px;
+  border-color: #dc3545;
+}

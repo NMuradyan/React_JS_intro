@@ -1,6 +1,25 @@
 .activLink {
-    color: red;
+  color:  #dc3545;
 }
 .navLinkName {
-    margin: 15px;
+  margin: 15px;
+  color: #17a2b8;
+  font-family: cursive;
+  font-weight: bolder;
+  font-size: large;
+}
+.activLink:hover {
+  text-decoration: none;
+}
+.navLinkName:hover {
+  text-decoration: none;
+  color: #dc3545;
+}
+.navCollapse{
+  margin-left: 50px;
+}
+.navIconStyle{
+  color: #17a2b8;
+  font-size: 3rem;
+  border-bottom: 2px;
 }

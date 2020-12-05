@@ -1,3 +1,8 @@
 .contStyle {
-    padding: 20px;
+  padding: 20px;
+}
+.todoButtonsStyles {
+  font-family: cursive;
+  font-weight: bolder;
+  font-size: large;
 }

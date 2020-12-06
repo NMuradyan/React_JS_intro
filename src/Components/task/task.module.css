@@ -17,3 +17,14 @@
   border-width: 5px;
   border-color: #dc3545;
 }
+.LinkName{
+  color: #17a2b8;
+}
+.LinkName:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+.cardTextsStlyles{
+  font-family: "PaApple Chancerypyrus";
+  font-size: medium;
+}

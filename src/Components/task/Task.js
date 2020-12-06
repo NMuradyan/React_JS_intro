@@ -4,7 +4,8 @@ import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import styles from "./task.module.css";
-import {formatDate} from '../../Helpers/utils';
+import { formatDate } from "../../Helpers/utils";
+import { Link } from "react-router-dom";
 
 class Task extends React.PureComponent {
   state = {
@@ -29,16 +30,24 @@ class Task extends React.PureComponent {
         <Card.Body className={styles.bodyBackground}>
           <input type="checkbox" onClick={this.handleSelected} />
           <Card.Title className={styles.cardTitle}>
-            {task.title}
+            <Link to={`/task-page/${task._id}`} className={styles.LinkName}>
+              {task.title}
+            </Link>
           </Card.Title>
-          <Card.Text>{task.description}</Card.Text>
-          <Card.Text>{formatDate(task.date)}</Card.Text>
-          <Card.Text>{formatDate(task.created_at)}</Card.Text>
+          <Card.Text className={styles.cardTextsStlyles}>
+            {task.description}
+          </Card.Text>
+          <Card.Text className={styles.cardTextsStlyles}>
+            First date: {formatDate(task.created_at)}
+          </Card.Text>
+          <Card.Text className={styles.cardTextsStlyles}>
+            Last date: {formatDate(task.date)}
+          </Card.Text>
           <Button
             variant="warning"
             className={styles.actionButton}
             disabled={disabled}
-            onClick={()=>this.props.onEdit(task)}
+            onClick={() => this.props.onEdit(task)}
           >
             <FontAwesomeIcon icon={faEdit} />
           </Button>

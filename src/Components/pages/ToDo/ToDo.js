@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./todo.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Task from "../task/Task";
-import AddTask from "../addTask/AddTask";
-import Confirm from "../Confirm/Confirm";
-import EditTaskModal from "../editTaskModal/EditTaskModal";
+import Task from "../../task/Task";
+import AddTask from "../../addTask/AddTask";
+import Confirm from "../../Confirm/Confirm";
+import EditTaskModal from "../../editTaskModal/EditTaskModal";
 import { Button, Container, Row, Col } from "react-bootstrap";
 
 class ToDo extends React.PureComponent {
@@ -207,7 +207,7 @@ class ToDo extends React.PureComponent {
       <div>
         <Container className={styles.contStyle}>
           <Row className="justify-content-center text-center">
-            <Col xs={11} sm={10} md={8} lg={6}>
+            <Col xs={11} sm={10} md={8} lg={6} className={styles.todoButtonsStyles}>
               <Button
                 onClick={this.toggleNewTaskModal}
                 variant="outline-info"
@@ -216,7 +216,7 @@ class ToDo extends React.PureComponent {
                 Add new task
               </Button>
             </Col>
-            <Col xs={1} md={4}>
+            <Col xs={1} md={4} className={styles.todoButtonsStyles}>
               <Button
                 onClick={this.toggleConfirm}
                 variant="outline-danger"

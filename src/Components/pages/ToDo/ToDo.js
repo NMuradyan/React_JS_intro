@@ -216,7 +216,7 @@ class ToDo extends React.PureComponent {
                 Add new task
               </Button>
             </Col>
-            <Col xs={1} md={4} className={styles.todoButtonsStyles}>
+            <Col xs={1} md={4} >
               <Button
                 onClick={this.toggleConfirm}
                 variant="outline-danger"

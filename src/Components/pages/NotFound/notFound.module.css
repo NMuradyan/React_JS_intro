@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.notFoundStyle {
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+.notFoundTextStyle {
+  /* height: 100vh; */
+  font-size: 20em;
+  vertical-align: middle;
+  text-align: center;
+  font-family: "papyrus";
+  color: #dc3545;
+}
+p svg:hover{
+    color: rgb(255, 208, 0);
+}

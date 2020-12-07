@@ -5,9 +5,10 @@
   margin: 5px;
 }
 .cardTitle {
-  color: dimgray;
+  color: #17a2b8;
   font-family: cursive;
   font-weight: bolder;
+  font-size: x-large;
 }
 .bodyBackground{
   background-color: lightgray;
@@ -26,5 +27,9 @@
 }
 .cardTextsStlyles{
   font-family: "PaApple Chancerypyrus";
-  font-size: medium;
+  font-size: 1.1em;
+}
+.cardDateStlyles{
+  font-family: "PaApple Chancerypyrus";
+  font-size: small;
 }

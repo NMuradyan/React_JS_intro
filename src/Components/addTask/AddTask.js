@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import styles from "../addTask/AddTask.module.css";
 import PropTypes from "prop-types";
 import { Button, FormControl, Modal } from "react-bootstrap";
@@ -9,12 +9,20 @@ import "react-datepicker/dist/react-datepicker.css";
 // import ShowDate from "../../Helpers/ShowDate";
 
 class AddTask extends React.PureComponent {
-  state = {
-    title: "",
-    description: "",
-    date: new Date(),
-    showDate: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      description: "",
+      date: new Date(),
+      showDate: false,
+    };
+    this.addTitleRef = createRef(null);
+  }
+
+  componentDidMount() {
+    this.addTitleRef.current.focus();
+  }
 
   handleChange = (event) => {
     let { name, value } = event.target;
@@ -71,6 +79,7 @@ class AddTask extends React.PureComponent {
             <FormControl
               className={styles.titleInputStyle}
               onChange={this.handleChange}
+              ref={this.addTitleRef}
               name="title"
               placeholder="Title"
               onKeyDown={this.handleKeyDown}
@@ -104,10 +113,10 @@ class AddTask extends React.PureComponent {
             )} */}
 
             <DatePicker
-            selected={this.state.date}
-            onChange={this.handleDateChange}
-            minDate={new Date()}
-          />
+              selected={this.state.date}
+              onChange={this.handleDateChange}
+              minDate={new Date()}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="info" onClick={this.addTask}>

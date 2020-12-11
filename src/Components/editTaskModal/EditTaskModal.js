@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import styles from "../editTaskModal/editTaskModal.module.css";
 import PropTypes from "prop-types";
 import { Button, Modal, FormControl } from "react-bootstrap";
@@ -14,6 +14,11 @@ export default class EditTaskModal extends React.Component {
       ...props.data,
       date: date ? new Date(date) : new Date(),
     };
+    this.titleRef = createRef(null);
+  }
+
+  componentDidMount() {
+    this.titleRef.current.focus();
   }
 
   handleChange = (event) => {
@@ -58,6 +63,7 @@ export default class EditTaskModal extends React.Component {
             onChange={this.handleChange}
             name="title"
             value={title}
+            ref={this.titleRef}
             placeholder="Title"
             bsPrefix
           />

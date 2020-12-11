@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-// import Product from "./Tasks/Product";
 import ToDo from "./Components/pages/ToDo/ToDo";
 import About from "./Components/pages/About/About";
 import TaskPage from "./Components/pages/TaskPage/TaskPage";

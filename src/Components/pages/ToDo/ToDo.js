@@ -55,7 +55,7 @@ class ToDo extends React.PureComponent {
         const tasks = [response, ...this.state.tasks];
         this.setState({
           tasks: tasks,
-          addTaskModal: false
+          addTaskModal: false,
         });
       })
       .catch((error) => {
@@ -175,11 +175,11 @@ class ToDo extends React.PureComponent {
       });
   };
 
-  toggleNewTaskModal= () => {
+  toggleNewTaskModal = () => {
     this.setState({
-      addTaskModal: !this.state.addTaskModal
-    })
-  }
+      addTaskModal: !this.state.addTaskModal,
+    });
+  };
 
   render() {
     const {
@@ -207,7 +207,13 @@ class ToDo extends React.PureComponent {
       <div>
         <Container className={styles.contStyle}>
           <Row className="justify-content-center text-center">
-            <Col xs={11} sm={10} md={8} lg={6} className={styles.todoButtonsStyles}>
+            <Col
+              xs={11}
+              sm={10}
+              md={8}
+              lg={6}
+              className={styles.todoButtonsStyles}
+            >
               <Button
                 onClick={this.toggleNewTaskModal}
                 variant="outline-info"
@@ -216,7 +222,7 @@ class ToDo extends React.PureComponent {
                 Add new task
               </Button>
             </Col>
-            <Col xs={1} md={4} >
+            <Col xs={1} md={4}>
               <Button
                 onClick={this.toggleConfirm}
                 variant="outline-danger"

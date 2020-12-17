@@ -37,10 +37,10 @@ class Task extends React.PureComponent {
           <Card.Text className={styles.cardTextsStlyles}>
             {task.description}
           </Card.Text>
-          <Card.Text className={styles.cardTextsStlyles}>
+          <Card.Text className={styles.cardDateStlyles}>
             First date: {formatDate(task.created_at)}
           </Card.Text>
-          <Card.Text className={styles.cardTextsStlyles}>
+          <Card.Text className={styles.cardDateStlyles}>
             Last date: {formatDate(task.date)}
           </Card.Text>
           <Button

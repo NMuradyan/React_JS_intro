@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { connect } from "react-redux";
+import { addTask } from "../../store/actions";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 // import ShowDate from "../../Helpers/ShowDate";
@@ -49,7 +51,7 @@ class AddTask extends React.PureComponent {
       date: date.toISOString().slice(0, 10),
     };
 
-    this.props.onAdd(task);
+    this.props.addTask(task);
   };
 
   handleDateChange = (date) => {
@@ -134,8 +136,11 @@ class AddTask extends React.PureComponent {
 }
 
 AddTask.propTypes = {
-  onAdd: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
 };
 
-export default AddTask;
+const mapDispatchToProps = {
+  addTask,
+};
+
+export default connect(null, mapDispatchToProps)(AddTask);

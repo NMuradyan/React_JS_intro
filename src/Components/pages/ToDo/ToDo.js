@@ -31,6 +31,11 @@ class ToDo extends React.PureComponent {
         showConfirm: false,
       });
     }
+    if (!prevProps.editSuccessTask && this.props.editSuccessTask) {
+      this.setState({
+        editTask: null,
+      });
+    }
   }
 
   handleCheck = (taskId) => {
@@ -61,36 +66,6 @@ class ToDo extends React.PureComponent {
     this.setState({
       editTask: task,
     });
-  };
-
-  saveEdited = (editedTask) => {
-    fetch(`http://localhost:3001/task/${editedTask._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedTask),
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.error) {
-          throw response.error;
-        }
-
-        const tasks = [...this.state.tasks];
-        let getTaskIndex = tasks.findIndex(
-          (task) => task._id === editedTask._id
-        );
-        tasks[getTaskIndex] = response;
-
-        this.setState({
-          tasks: tasks,
-          editTask: null,
-        });
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
   };
 
   toggleNewTaskModal = () => {
@@ -155,7 +130,7 @@ class ToDo extends React.PureComponent {
         {!!editTask && (
           <EditTaskModal
             data={editTask}
-            onSave={this.saveEdited}
+            from="tasks"
             onClose={() => this.toogleEditModal(null)}
           />
         )}
@@ -170,6 +145,7 @@ const mapStateToProps = (state) => {
     tasks: state.tasks,
     addSuccessTask: state.addSuccessTask,
     removeSuccessTask: state.removeSuccessTask,
+    editSuccessTask: state.editSuccessTask
   };
 };
 

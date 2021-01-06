@@ -1,100 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { formatDate } from "../../../Helpers/utils";
-import Spinner from "../../Spinner/Spinner";
 import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import styles from "./taskPage.module.css";
 import EditTaskModal from "../../editTaskModal/EditTaskModal";
+import { connect } from "react-redux";
+import { getSingleTask, removeTask } from "../../../store/actions";
 
-export default function TaskPage(props) {
-  const [task, setTask] = useState(null);
+function TaskPage(props) {
   const [openEditModal, setOpenEditModal] = useState(false);
 
   useEffect(() => {
-    // const taskId = props.match.params.id;
+    const taskId = props.match.params.id;
 
-    fetch(`http://localhost:3001/task/${props.match.params.id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.error) {
-          throw response.error;
-        }
+    props.getSingleTask(taskId);
+  }, []);
 
-        setTask(response);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  }, [props.match.params.id]);
+  useEffect(() => {
+    setOpenEditModal(false);
+  }, [props.editSuccessTask]);
 
   const toogleEditModal = () => {
     setOpenEditModal(!openEditModal);
   };
 
-  const saveEditedTask = (editedTask) => {
-    fetch(`http://localhost:3001/task/${editedTask._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedTask),
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.error) {
-          throw response.error;
-        }
-
-        setTask(response);
-        setOpenEditModal(false);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
-
-  const removeTask = () => {
-    const taskId = props.match.params.id;
-
-    fetch(`http://localhost:3001/task/${taskId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.error) {
-          throw response.error;
-        }
-
-        props.history.push("/");
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
-
   return (
     <>
-      {!!task ? (
+      {!!props.task ? (
         <Card className={`${styles.taskStyle}`}>
           <Card.Body className={styles.bodyBackground}>
-            <Card.Title className={styles.cardTitle}>{task.title}</Card.Title>
+            <Card.Title className={styles.cardTitle}>
+              {props.task.title}
+            </Card.Title>
             <Card.Text className={styles.cardTextsStlyles}>
-              {task.description}
+              {props.task.description}
             </Card.Text>
             <Card.Text className={styles.cardDateStlyles}>
-              First date: {formatDate(task.created_at)}
+              First date: {formatDate(props.task.created_at)}
             </Card.Text>
             <Card.Text className={styles.cardDateStlyles}>
-              Last date: {formatDate(task.date)}
+              Last date: {formatDate(props.task.date)}
             </Card.Text>
             <Button
               variant="warning"
@@ -106,22 +52,37 @@ export default function TaskPage(props) {
             <Button
               variant="danger"
               className={styles.actionButton}
-              onClick={removeTask}
+              onClick={() => props.removeTask(props.task._id, "single", props.history.push)}
             >
               <FontAwesomeIcon icon={faTrash} />
             </Button>
           </Card.Body>
         </Card>
       ) : (
-        <Spinner />
+        <h2>Task not found</h2>
       )}
       {openEditModal && (
         <EditTaskModal
-          data={task}
-          onSave={saveEditedTask}
+          data={props.task}
+          from="single"
           onClose={toogleEditModal}
         />
       )}
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    task: state.task,
+    editSuccessTask: state.editSuccessTask,
+    removeSingleSuccessTask: state.removeSingleSuccessTask,
+  };
+};
+
+const mapDispatchToProps = {
+  getSingleTask,
+  removeTask,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskPage);

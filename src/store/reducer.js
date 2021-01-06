@@ -2,11 +2,14 @@ import * as actionTypes from "./actionTypes";
 
 const defaultState = {
   tasks: [],
+  task: null,
   errorMassage: null,
   successMassage: null,
   addSuccessTask: false,
   loading: false,
-  removeSuccessTask: false
+  removeSuccessTask: false,
+  removeSingleSuccessTask: false,
+  editSuccessTask: false,
 };
 
 export const reducer = (state = defaultState, action) => {
@@ -18,7 +21,9 @@ export const reducer = (state = defaultState, action) => {
         addSuccessTask: false,
         errorMassage: null,
         successMassage: null,
-        removeSuccessTask: false
+        removeSuccessTask: false,
+        removeSingleSuccessTask: false,
+        editSuccessTask: false,
       };
     }
 
@@ -51,14 +56,26 @@ export const reducer = (state = defaultState, action) => {
     }
 
     case actionTypes.REMOVE_TASK_SUCCESS: {
-      const newTasks = state.tasks.filter((task) => task._id !== action.taskId);
+      if (action.from === "single") {
+        return {
+          ...state,
+          task: null,
+          loading: false,
+          successMassage: "Task removed successfully",
+          removeSingleSuccessTask: true,
+        };
+      } else {
+        const newTasks = state.tasks.filter(
+          (task) => task._id !== action.taskId
+        );
 
-      return {
-        ...state,
-        tasks: newTasks,
-        loading: false,
-        successMassage: "Task removed successfully",
-      };
+        return {
+          ...state,
+          tasks: newTasks,
+          loading: false,
+          successMassage: "Task removed successfully",
+        };
+      }
     }
 
     case actionTypes.REMOVE_SELECTED_TASK_SUCCESS: {
@@ -67,18 +84,50 @@ export const reducer = (state = defaultState, action) => {
       action.selectedTasksId.forEach((id) => {
         tasks = tasks.filter((task) => task._id !== id);
       });
-  
+
       return {
         ...state,
         tasks: tasks,
         loading: false,
         successMassage: "Tasks removed successfully",
-        removeSuccessTask: true
+        removeSuccessTask: true,
       };
     }
-  
+
+    case actionTypes.EDIT_TASK_SUCCESS: {
+      if (action.from === "single") {
+        return {
+          ...state,
+          task: action.task,
+          loading: false,
+          editSuccessTask: true,
+          successMassage: "Task edited successfully",
+        };
+      } else {
+        const tasks = [...state.tasks];
+
+        const getTaskIndex = tasks.findIndex(
+          (task) => task._id === action.task._id
+        );
+        tasks[getTaskIndex] = action.task;
+        return {
+          ...state,
+          tasks: tasks,
+          loading: false,
+          editSuccessTask: true,
+          successMassage: "Task edited successfully",
+        };
+      }
+    }
+    case actionTypes.GET_SINGLE_TASK_SUCCESS: {
+      return {
+        ...state,
+        task: action.task,
+        loading: false,
+      };
+    }
+
     default:
       return state;
   }
-
 };

@@ -3,9 +3,11 @@ import styles from "../editTaskModal/editTaskModal.module.css";
 import PropTypes from "prop-types";
 import { Button, Modal, FormControl } from "react-bootstrap";
 import DatePicker from "react-datepicker";
+import { connect } from "react-redux";
+import {saveEdited} from "../../store/actions"
 // import ShowDate from "../../Helpers/ShowDate";
 
-export default class EditTaskModal extends React.Component {
+class EditTaskModal extends React.Component {
   constructor(props) {
     super(props);
     const { date } = props.data;
@@ -38,7 +40,7 @@ export default class EditTaskModal extends React.Component {
       ...this.state,
       date: date.toISOString().slice(0, 10),
     };
-    this.props.onSave(editedTask);
+    this.props.saveEdited(editedTask, this.props.from);
   };
 
   handleDateChange = (date) => {
@@ -108,6 +110,11 @@ export default class EditTaskModal extends React.Component {
 
 EditTaskModal.propTypes = {
   data: PropTypes.object.isRequired,
-  onSave: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = {
+  saveEdited
+}
+
+export default connect(null, mapDispatchToProps)(EditTaskModal);

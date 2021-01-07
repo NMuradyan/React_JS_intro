@@ -33,3 +33,23 @@
   font-family: "PaApple Chancerypyrus";
   font-size: small;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e2e2e2; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #17a2b8; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #047586; 
+}

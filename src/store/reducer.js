@@ -119,12 +119,46 @@ export const reducer = (state = defaultState, action) => {
         };
       }
     }
+
     case actionTypes.GET_SINGLE_TASK_SUCCESS: {
       return {
         ...state,
         task: action.task,
         loading: false,
       };
+    }
+
+    case actionTypes.CHANGE_TASK_STATUS_SUCCESS: {
+      let message;
+      if (action.task.status === "done") {
+        message = "Task copleted";
+      } else {
+        message = "Task is active now";
+      }
+
+      if (action.from === "single") {
+        return {
+          ...state,
+          task: action.task,
+          loading: false,
+          editSuccessTask: true,
+          successMassage: message,
+        };
+      } else {
+        const tasks = [...state.tasks];
+
+        const getTaskIndex = tasks.findIndex(
+          (task) => task._id === action.task._id
+        );
+        tasks[getTaskIndex] = action.task;
+        return {
+          ...state,
+          tasks: tasks,
+          loading: false,
+          editSuccessTask: true,
+          successMassage: message,
+        };
+      }
     }
 
     default:

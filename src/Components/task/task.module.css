@@ -28,10 +28,18 @@
 .cardTextsStlyles{
   font-family: "PaApple Chancerypyrus";
   font-size: 1.1em;
+  margin-bottom: 8px;
+}
+.cardStatusStlyles {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: small;
+  margin-bottom: 2px;
 }
 .cardDateStlyles{
-  font-family: "PaApple Chancerypyrus";
+  font-family: monospace;
   font-size: small;
+  margin-bottom: 2px;
 }
 
 /* width */

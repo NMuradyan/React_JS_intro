@@ -22,6 +22,9 @@
 .navItem:hover {
     color: #dc3545
   }
-/* .navStyle {
-    color: #17a2b8;
-  } */
+  .manNavbar{
+    margin-bottom: 10px;
+  }
+/* a.active {
+ background-color: #00414b;
+} */

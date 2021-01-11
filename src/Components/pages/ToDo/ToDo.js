@@ -79,7 +79,7 @@ class ToDo extends React.PureComponent {
     const { selectedTasks, showConfirm, editTask, addTaskModal } = this.state;
     const taskCard = this.props.tasks.map((task) => {
       return (
-        <Col key={task._id} xs={12} sm={6} md={4} lg={3} xl={2}>
+        <Col key={task._id} xs={12} sm={6} md={4} lg={3} xl={3}>
           <Task
             data={task}
             onCheck={this.handleCheck}
@@ -91,7 +91,7 @@ class ToDo extends React.PureComponent {
     });
 
     return (
-      <div>
+      <div className={styles.mainDivStyle}>
         <Container className={styles.contStyle}>
           <Search />
           <Row className="justify-content-center text-center">
@@ -110,7 +110,7 @@ class ToDo extends React.PureComponent {
                 Add new task
               </Button>
             </Col>
-            <Col xs={1} md={4}>
+            <Col xs={1} md={4} className={styles.todoButtonsStyles}>
               <Button
                 onClick={this.toggleConfirm}
                 variant="outline-danger"

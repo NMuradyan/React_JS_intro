@@ -10,12 +10,12 @@ import { getSingleTask, removeTask } from "../../../store/actions";
 
 function TaskPage(props) {
   const [openEditModal, setOpenEditModal] = useState(false);
+  const { getSingleTask } = props;
+  const taskId = props.match.params.id;
 
   useEffect(() => {
-    const taskId = props.match.params.id;
-
-    props.getSingleTask(taskId);
-  }, []);
+    getSingleTask(taskId);
+  }, [taskId, getSingleTask]);
 
   useEffect(() => {
     setOpenEditModal(false);
@@ -52,7 +52,9 @@ function TaskPage(props) {
             <Button
               variant="danger"
               className={styles.actionButton}
-              onClick={() => props.removeTask(props.task._id, "single", props.history.push)}
+              onClick={() =>
+                props.removeTask(props.task._id, "single", props.history.push)
+              }
             >
               <FontAwesomeIcon icon={faTrash} />
             </Button>

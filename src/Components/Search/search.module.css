@@ -1,0 +1,27 @@
+.dateDropdown {
+  padding: 15px;
+  width: 230px;
+  color: #17a2b8;
+  font-family: cursive;
+}
+
+.navbarBrand {
+  color: #17a2b8;
+  font-family: cursive;
+  font-weight: bolder;
+  font-size: large;
+}
+.navDropdown a {
+  color: #17a2b8;
+  font-family: cursive;
+}
+.navItem {
+  color: #17a2b8;
+  font-family: cursive;
+}
+.navItem:hover {
+    color: #dc3545
+  }
+/* .navStyle {
+    color: #17a2b8;
+  } */

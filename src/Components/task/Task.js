@@ -7,7 +7,9 @@ import styles from "./task.module.css";
 import { formatDate } from "../../Helpers/utils";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {removeTask} from "../../store/actions"
+import {removeTask} from "../../store/actions";
+import ShowMoreText from 'react-show-more-text';
+// import showmoretextstyles from "./showMoreText.module.css";
 
 class Task extends React.PureComponent {
   state = {
@@ -36,9 +38,21 @@ class Task extends React.PureComponent {
               {task.title}
             </Link>
           </Card.Title>
-          <Card.Text className={styles.cardTextsStlyles}>
+          <ShowMoreText
+            lines={5}
+            more='Show more'
+            less='Show less'
+            className="content-css"
+            anchorClass='my-anchor-css-class'
+            onClick={this.executeOnClick}
+            expanded={false}
+            width={280}
+            >
+              {task.description}
+          {/* <Card.Text className={styles.cardTextsStlyles}>
             {task.description}
-          </Card.Text>
+          </Card.Text> */}
+          </ShowMoreText>
           <Card.Text className={styles.cardDateStlyles}>
             First date: {formatDate(task.created_at)}
           </Card.Text>

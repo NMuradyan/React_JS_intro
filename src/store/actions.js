@@ -108,7 +108,6 @@ export function changeTaskStatus(id, data, from) {
     dispatch({ type: actionTypes.LOADING });
     request(`${apiUrl}/task/${id}`, "PUT", data)
       .then((editedTask) => {
-        console.log(editedTask.description)
         dispatch({
           type: actionTypes.CHANGE_TASK_STATUS_SUCCESS,
           task: editedTask,

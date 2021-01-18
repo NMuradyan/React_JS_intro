@@ -8,6 +8,7 @@ import Contact from "./Components/pages/Contact/Contact";
 import TaskPage from "./Components/pages/TaskPage/TaskPage";
 import NotFound from "./Components/pages/NotFound/NotFound";
 import NavMenu from "./Components/NavMenu/NavMenu";
+import Footer from "./Components/Footer/Footer";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "./Components/Spinner/Spinner"
@@ -50,6 +51,8 @@ const {loading, errorMassage, successMassage} = props;
       />
 
       {loading && <Spinner />}
+
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,8 @@
 .mainDiv {
   width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .aboutImage {
@@ -9,15 +12,34 @@ img {
   width: 100%;
   height: 100vh;
 }
-.aboutTitle{
-    font-weight: 15px;
-    font-size: xx-large;
+.aboutTitle {
+  font-weight: 900;
+  font-size: xx-large;
+  text-align: center;
+  font-size: 50px;
 }
 .aboutText {
-  text-align: center;
   color: #064970;
   font-family: cursive;
   font-weight: bolder;
-  font-size: large;
+  font-size: 30px;
+  padding-top: 50px;
 }
-
+.aboutTextOne {
+  width: 400px;
+  margin: 50px 0px 20px 80px;
+}
+.aboutTextTwo {
+  margin-right: 80px;
+  width: 400px;
+  float: right;
+}
+.aboutTextThree {
+  width: 400px;
+  margin: 120px 0px 0px 80px;
+}
+.aboutTextFour{
+  margin-right: 80px;
+  width: 400px;
+  float: right;
+}

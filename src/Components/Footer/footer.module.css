@@ -1,0 +1,67 @@
+.mainFooter {
+  background-color: #f8f9fa !important;
+  width: 100%;
+  height: 120px;
+  padding-left: 43%;
+}
+/* .divText {
+    color: #17a2b8;
+    font-family: cursive;
+    font-size: 30px;
+    font-weight: bolder;
+    display: inline-block;
+} */
+.divSocials {
+  margin-left: 45px;
+}
+.divLinkedin {
+  display: inline-block;
+  width: 60px;
+  margin: 10px;
+  position: relative;
+}
+.divGithub {
+  display: inline-block;
+  width: 60px;
+  margin: 10px;
+  position: relative;
+}
+.navIconLinkedinStyle {
+  color: #0069cc;
+  font-size: 3rem;
+  border-bottom: 2px;
+}
+.navIconGithubStyle {
+  color: #344aaf;
+  font-size: 3rem;
+  border-bottom: 2px;
+}
+.divLinks {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  margin: 10px;
+}
+.linksStyles {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: cursive;
+  color: #064970;
+}
+.linksStyles:hover {
+  color: #17a2b8;
+  text-decoration: none;
+}
+.copyrightStyles {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: cursive;
+  color: #0e73ad;
+}
+.bitschoolStyles {
+  color: #0e73ad;
+}
+.bitschoolStyles:hover {
+  color: #17a2b8;
+  text-decoration: none;
+}

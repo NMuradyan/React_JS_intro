@@ -8,7 +8,7 @@ import EditTaskModal from "../../editTaskModal/EditTaskModal";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getTasks, removeSelected } from "../../../store/actions";
-import Search from "../../Search/Search"
+import Search from "../../Search/Search";
 
 class ToDo extends React.PureComponent {
   state = {

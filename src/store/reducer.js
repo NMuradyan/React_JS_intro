@@ -3,9 +3,11 @@ import * as actionTypes from "./actionTypes";
 const defaultState = {
   tasks: [],
   task: null,
+  form: [],
   errorMassage: null,
   successMassage: null,
   addSuccessTask: false,
+  sendSuccessMessage: false,
   loading: false,
   removeSuccessTask: false,
   removeSingleSuccessTask: false,
@@ -21,6 +23,7 @@ export const reducer = (state = defaultState, action) => {
         addSuccessTask: false,
         errorMassage: null,
         successMassage: null,
+        sendSuccessMessage: false,
         removeSuccessTask: false,
         removeSingleSuccessTask: false,
         editSuccessTask: false,
@@ -159,6 +162,17 @@ export const reducer = (state = defaultState, action) => {
           successMassage: message,
         };
       }
+    }
+
+    case actionTypes.GET_FORM_MESSAGE: {
+      const form = [...state.form, action.info]
+      return {
+        ...state,
+        form: form,
+        loading: false,
+        sendSuccessMessage: true,
+        successMassage: "Message send successfully",
+      };
     }
 
     default:

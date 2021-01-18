@@ -2,19 +2,31 @@
   margin: 0;
   padding: 0;
 }
+.notFoundDivStyle{
+  min-height: 80vh;
+}
 .notFoundStyle {
   width: 100vw;
-  height: 100vh;
   justify-content: center;
 }
-.notFoundTextStyle {
-  /* height: 100vh; */
+.notFoundGifStyle {
   font-size: 20em;
   vertical-align: middle;
   text-align: center;
   font-family: "papyrus";
   color: #dc3545;
 }
+.notFoundGifStyle>p{
+  margin-bottom: 0;
+}
 p svg:hover{
     color: rgb(255, 208, 0);
+}
+.notFoundTextStyle{
+  text-align: center;
+  color: #dc3545;
+  font-family: cursive;
+  font-size: 50px;
+  font-weight: bolder;
+
 }

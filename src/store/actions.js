@@ -29,6 +29,7 @@ export function getTasks(data = {}) {
 }
 
 export function addTask(info) {
+  
   return (dispatch) => {
     dispatch({ type: actionTypes.LOADING });
     request(`${apiUrl}/task`, "POST", info)
@@ -112,6 +113,23 @@ export function changeTaskStatus(id, data, from) {
           type: actionTypes.CHANGE_TASK_STATUS_SUCCESS,
           task: editedTask,
           from,
+        });
+      })
+      .catch((err) => {
+        dispatch({ type: actionTypes.ERROR, error: err.message });
+      });
+  };
+}
+
+export function sendFormMessage(info) {
+  return (dispatch) => {
+    dispatch({ type: actionTypes.LOADING });
+    request(`${apiUrl}/form`, "POST", info)
+      .then((res) => {
+        dispatch({
+          type: actionTypes.GET_FORM_MESSAGE,
+          form: res,
+          info
         });
       })
       .catch((err) => {

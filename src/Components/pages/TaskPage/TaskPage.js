@@ -7,6 +7,7 @@ import styles from "./taskPage.module.css";
 import EditTaskModal from "../../editTaskModal/EditTaskModal";
 import { connect } from "react-redux";
 import { getSingleTask, removeTask, changeTaskStatus } from "../../../store/actions";
+import about from "../../../Assets/images/todolist.jpg";
 
 function TaskPage(props) {
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -28,7 +29,7 @@ function TaskPage(props) {
   return (
     <>
       {!!props.task ? (
-        <div className={styles.mainDivStyle}>
+        <div className={styles.mainDivStyle} style={{backgroundImage: `url(${about})`}}>
         <Card className={`${styles.taskStyle}`}>
           <Card.Body className={styles.bodyBackground}>
             <Card.Title className={styles.cardTitle}>

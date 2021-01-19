@@ -9,6 +9,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getTasks, removeSelected } from "../../../store/actions";
 import Search from "../../Search/Search";
+import todoimg from "../../../Assets/images/toDoBack.png";
 
 class ToDo extends React.PureComponent {
   state = {
@@ -91,7 +92,10 @@ class ToDo extends React.PureComponent {
     });
 
     return (
-      <div className={styles.mainDivStyle}>
+      <div
+        className={styles.mainDivStyle}
+        style={{ backgroundImage: `url(${todoimg})` }}
+      >
         <Container className={styles.contStyle}>
           <Search />
           <Row className="justify-content-center text-center">
@@ -147,7 +151,7 @@ const mapStateToProps = (state) => {
     tasks: state.tasks,
     addSuccessTask: state.addSuccessTask,
     removeSuccessTask: state.removeSuccessTask,
-    editSuccessTask: state.editSuccessTask
+    editSuccessTask: state.editSuccessTask,
   };
 };
 

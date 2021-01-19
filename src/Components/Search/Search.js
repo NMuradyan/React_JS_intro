@@ -116,13 +116,13 @@ function Search(props) {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <NavDropdown
-          className={styles.navDropdown}
+            className={styles.navDropdown}
             title={status.value ? status.label : "Status"}
           >
             {statusOptions.map((item, index) => {
               return (
                 <NavDropdown.Item
-                className={styles.navItem}
+                  className={styles.navItem}
                   key={index}
                   onClick={() => setStatus(item)}
                   active={status.value === item.value}
@@ -133,13 +133,13 @@ function Search(props) {
             })}
           </NavDropdown>
           <NavDropdown
-          className={styles.navDropdown}
+            className={styles.navDropdown}
             title={sort.value ? sort.label : "Sort"}
           >
             {sortOptions.map((item, index) => {
               return (
                 <NavDropdown.Item
-                className={styles.navItem}
+                  className={styles.navItem}
                   key={index}
                   onClick={() => setSort(item)}
                   active={sort.value === item.value}

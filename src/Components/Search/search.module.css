@@ -20,12 +20,9 @@
   font-family: cursive;
 }
 .navItem:hover {
-    color: #dc3545
-  }
-  .manNavbar{
-    margin-bottom: 10px;
-    color: #17a2b8;
-  }
-/* a.active {
- background-color: #00414b;
-} */
+  color: #dc3545;
+}
+.manNavbar {
+  margin-bottom: 10px;
+  color: #17a2b8;
+}

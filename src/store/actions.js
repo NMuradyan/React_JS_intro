@@ -18,7 +18,7 @@ export function getTasks(data = {}) {
 
   return (dispatch) => {
     dispatch({ type: actionTypes.LOADING });
-    request(url+query)
+    request(url + query)
       .then((res) => {
         dispatch({ type: actionTypes.GET_TASKS_SUCCESS, tasks: res });
       })
@@ -29,7 +29,6 @@ export function getTasks(data = {}) {
 }
 
 export function addTask(info) {
-  
   return (dispatch) => {
     dispatch({ type: actionTypes.LOADING });
     request(`${apiUrl}/task`, "POST", info)
@@ -129,7 +128,7 @@ export function sendFormMessage(info) {
         dispatch({
           type: actionTypes.GET_FORM_MESSAGE,
           form: res,
-          info
+          info,
         });
       })
       .catch((err) => {

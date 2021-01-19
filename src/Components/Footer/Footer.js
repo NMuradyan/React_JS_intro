@@ -1,8 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./footer.module.css";
-// import { Nav, Navbar } from "react-bootstrap";
-// import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 

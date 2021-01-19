@@ -6,9 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
 import { addTask } from "../../store/actions";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
-// import ShowDate from "../../Helpers/ShowDate";
 
 class AddTask extends React.PureComponent {
   constructor(props) {
@@ -68,7 +65,6 @@ class AddTask extends React.PureComponent {
 
   render() {
     const { onClose } = this.props;
-    // const { showDate } = this.state;
     return (
       <>
         <Modal show={true} onHide={onClose} centered>
@@ -96,24 +92,6 @@ class AddTask extends React.PureComponent {
               aria-label="With textarea"
               bsPrefix
             />
-            {/* <Button
-              //onClick={this.handleDateChange}
-              onClick={this.toggleDateButton}
-              // selected={new Date()}
-              //onChange={this.handleDateChange}
-              // minDate={subDays(new Date(), 5)}
-              // placeholderText=""
-              variant="outline-info"
-            >
-              <FontAwesomeIcon icon={faCalendarCheck} />
-            </Button>
-            {showDate && (
-              <ShowDate
-                data={this.state.date}
-                onChange={this.handleDateChange}
-              />
-            )} */}
-
             <DatePicker
               selected={this.state.date}
               onChange={this.handleDateChange}
@@ -129,7 +107,6 @@ class AddTask extends React.PureComponent {
             </Button>
           </Modal.Footer>
         </Modal>
-        {/* {showDate && <ShowDate data={this.state.date} onChange={this.handleChange} />} */}
       </>
     );
   }

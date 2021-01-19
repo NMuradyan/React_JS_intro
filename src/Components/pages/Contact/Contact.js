@@ -27,16 +27,19 @@ function Contact(props) {
   };
 
   return (
-    <div className={styles.mainPage} style={{backgroundImage: `url(${contact})`}}>
+    <div
+      className={styles.mainPage}
+      style={{ backgroundImage: `url(${contact})` }}
+    >
       <div className={styles.divCentered}>
         <div className={styles.pageTitle}>Contact with us</div>
         <Form className={styles.formStylesFirst}>
-              <Form.Control
-                onChange={handleChange}
-                placeholder="Name, Surname"
-                name="name"
-                value={values.name}
-              />
+          <Form.Control
+            onChange={handleChange}
+            placeholder="Name, Surname"
+            name="name"
+            value={values.name}
+          />
         </Form>
         <Form className={styles.formStylesSecond}>
           <Form.Group>

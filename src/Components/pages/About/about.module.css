@@ -4,7 +4,6 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .aboutImage {
   width: 100%;
 }
@@ -26,20 +25,20 @@ img {
   padding-top: 50px;
 }
 .aboutTextOne {
-  width: 400px;
+  width: 40vw;
   margin: 50px 0px 20px 80px;
 }
 .aboutTextTwo {
   margin-right: 80px;
-  width: 400px;
+  width: 40vw;
   float: right;
 }
 .aboutTextThree {
-  width: 400px;
+  width: 40vw;
   margin: 120px 0px 0px 80px;
 }
-.aboutTextFour{
+.aboutTextFour {
   margin-right: 80px;
-  width: 400px;
+  width: 40vw;
   float: right;
 }

@@ -165,10 +165,8 @@ export const reducer = (state = defaultState, action) => {
     }
 
     case actionTypes.GET_FORM_MESSAGE: {
-      const form = [...state.form, action.info]
       return {
         ...state,
-        form: form,
         loading: false,
         sendSuccessMessage: true,
         successMassage: "Message send successfully",

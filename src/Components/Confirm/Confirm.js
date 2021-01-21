@@ -12,7 +12,6 @@ export default function Confirm(props) {
           <span className={styles.countStyle}>{props.count}</span> tasks
         </Modal.Title>
       </Modal.Header>
-      {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
       <Modal.Footer>
         <Button variant="danger" onClick={props.onSubmit}>
           Remove all

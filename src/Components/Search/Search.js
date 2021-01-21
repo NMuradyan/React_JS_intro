@@ -110,19 +110,19 @@ function Search(props) {
   };
 
   return (
-    <Navbar bg="light" expand="lg" variant="info" className={styles.manNavbar}>
+    <Navbar bg="light" expand="lg" className={styles.manNavbar}>
       <Navbar.Brand className={styles.navbarBrand}>Sort by</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+      <Navbar.Collapse id="basic-navbar-nav" className={styles.navCollapse}>
+        <Nav className={`mr-auto ${styles.navMainStyle}`}>
           <NavDropdown
-          className={styles.navDropdown}
+            className={styles.navDropdown}
             title={status.value ? status.label : "Status"}
           >
             {statusOptions.map((item, index) => {
               return (
                 <NavDropdown.Item
-                className={styles.navItem}
+                  className={styles.navItem}
                   key={index}
                   onClick={() => setStatus(item)}
                   active={status.value === item.value}
@@ -133,13 +133,13 @@ function Search(props) {
             })}
           </NavDropdown>
           <NavDropdown
-          className={styles.navDropdown}
+            className={styles.navDropdown}
             title={sort.value ? sort.label : "Sort"}
           >
             {sortOptions.map((item, index) => {
               return (
                 <NavDropdown.Item
-                className={styles.navItem}
+                  className={styles.navItem}
                   key={index}
                   onClick={() => setSort(item)}
                   active={sort.value === item.value}

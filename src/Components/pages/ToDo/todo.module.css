@@ -7,6 +7,11 @@
   font-size: large;
 }
 .mainDivStyle {
-  background-color: #08222d ;
-  min-height: 100vh
+  background-color: #08222d;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.remSelButtonsStyles {
+  width: 160px;
 }

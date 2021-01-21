@@ -11,14 +11,14 @@ import NavMenu from "./Components/NavMenu/NavMenu";
 import Footer from "./Components/Footer/Footer";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Spinner from "./Components/Spinner/Spinner"
+import Spinner from "./Components/Spinner/Spinner";
 
 function App(props) {
-const {loading, errorMassage, successMassage} = props;
+  const { loading, errorMassage, successMassage } = props;
 
   if (errorMassage) {
     toast.error(errorMassage);
-  };
+  }
 
   if (successMassage) {
     toast.success(successMassage);
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
   return {
     errorMassage: state.errorMassage,
     successMassage: state.successMassage,
-    loading: state.loading
+    loading: state.loading,
   };
 };
 

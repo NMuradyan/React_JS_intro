@@ -5,8 +5,8 @@ import { reducer } from "./reducer";
 
 const middlewareArr = [thunk];
 
-if(process.env.NODE_ENV === "development"){
-    middlewareArr.push(logger)
+if (process.env.NODE_ENV === "development") {
+  middlewareArr.push(logger);
 }
 
 const middleware = applyMiddleware(...middlewareArr);

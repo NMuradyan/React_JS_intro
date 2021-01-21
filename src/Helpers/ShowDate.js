@@ -7,7 +7,7 @@ export default class ShowDate extends React.Component {
     const { date } = props.data;
 
     this.state = {
-       ...props.data,
+      ...props.data,
       date: date ? new Date(date) : new Date(),
     };
   }
@@ -19,12 +19,7 @@ export default class ShowDate extends React.Component {
 
   render() {
     return (
-      <DatePicker
-        selected={this.state.date}
-        // onChange={this.handleDateChange}
-        minDate={new Date()}
-        inline
-      />
+      <DatePicker selected={this.state.date} minDate={new Date()} inline />
     );
   }
 }

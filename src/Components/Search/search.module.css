@@ -1,31 +1,40 @@
 .dateDropdown {
   padding: 15px;
-  width: 230px;
+  width: 250px;
   color: #17a2b8;
   font-family: cursive;
 }
-
+.manNavbar {
+  margin-bottom: 10px;
+  color: #17a2b8;
+}
+.manNavbar .navbarBrand {
+  color: #17a2b8;
+}
+.manNavbar .navbarBrand:hover {
+  color: #17a2b8;
+}
 .navbarBrand {
   color: #17a2b8;
   font-family: cursive;
   font-weight: bolder;
   font-size: large;
 }
-.navDropdown a {
-  color: #17a2b8;
+.navMainStyle .navDropdown a {
   font-family: cursive;
+  color: #63bbc9 !important;
 }
 .navItem {
   color: #17a2b8;
   font-family: cursive;
 }
 .navItem:hover {
-    color: #dc3545
-  }
-  .manNavbar{
-    margin-bottom: 10px;
-    color: #17a2b8;
-  }
-/* a.active {
- background-color: #00414b;
-} */
+  color: #dc3545;
+}
+.navItem:active {
+  background-color: #164147 !important;
+}
+.navItem .dropdown-item.active .dropdown-item:active{
+  
+  background-color: #2b6e79 !important;
+}

@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-.notFoundDivStyle{
+.notFoundDivStyle {
   min-height: 80vh;
 }
 .notFoundStyle {
@@ -16,17 +16,16 @@
   font-family: "papyrus";
   color: #dc3545;
 }
-.notFoundGifStyle>p{
+.notFoundGifStyle > p {
   margin-bottom: 0;
 }
-p svg:hover{
-    color: rgb(255, 208, 0);
+p svg:hover {
+  color: rgb(255, 208, 0);
 }
-.notFoundTextStyle{
+.notFoundTextStyle {
   text-align: center;
   color: #dc3545;
   font-family: cursive;
   font-size: 50px;
   font-weight: bolder;
-
 }

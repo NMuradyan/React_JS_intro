@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./contact.module.css";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -14,12 +14,22 @@ const allValues = {
 function Contact(props) {
   const [values, setValues] = useState(allValues);
 
+  useEffect(
+    (values) => {
+      if (!props.sendSuccessMessage) {
+        setValues(values);
+      }
+      setValues(allValues);
+    },
+    [props.sendSuccessMessage]
+  );
+
   const sendFormMessage = () => {
-    setValues(allValues);
     props.sendFormMessage(values);
   };
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = (event) => {
+    let { name, value } = event.target;
     setValues({
       ...values,
       [name]: value,
@@ -27,16 +37,19 @@ function Contact(props) {
   };
 
   return (
-    <div className={styles.mainPage} style={{backgroundImage: `url(${contact})`}}>
+    <div
+      className={styles.mainPage}
+      style={{ backgroundImage: `url(${contact})` }}
+    >
       <div className={styles.divCentered}>
         <div className={styles.pageTitle}>Contact with us</div>
         <Form className={styles.formStylesFirst}>
-              <Form.Control
-                onChange={handleChange}
-                placeholder="Name, Surname"
-                name="name"
-                value={values.name}
-              />
+          <Form.Control
+            onChange={handleChange}
+            placeholder="Name, Surname"
+            name="name"
+            value={values.name}
+          />
         </Form>
         <Form className={styles.formStylesSecond}>
           <Form.Group>
@@ -71,8 +84,14 @@ function Contact(props) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    sendSuccessMessage: state.sendSuccessMessage,
+  };
+};
+
 const mapDispatchToProps = {
   sendFormMessage,
 };
 
-export default connect(null, mapDispatchToProps)(Contact);
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

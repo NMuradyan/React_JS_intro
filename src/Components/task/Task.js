@@ -12,10 +12,9 @@ import styles from "./task.module.css";
 import { formatDate } from "../../Helpers/utils";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { removeTask,changeTaskStatus } from "../../store/actions";
+import { removeTask, changeTaskStatus } from "../../store/actions";
 import ShowMoreText from "react-show-more-text";
 import { cutText } from "../../Helpers/utils";
-// import showmoretextstyles from "./showMoreText.module.css";
 
 class Task extends React.PureComponent {
   state = {
@@ -48,7 +47,6 @@ class Task extends React.PureComponent {
             lines={3}
             more="Show more"
             less="Show less"
-            // className="content-css"
             anchorClass="my-anchor-css-class"
             onClick={this.executeOnClick}
             className={`"content-css" ${styles.cardTextsStlyles}`}
@@ -56,10 +54,7 @@ class Task extends React.PureComponent {
             width={300}
           >
             {task.description}
-            </ShowMoreText>
-            {/* <Card.Text className={styles.cardTextsStlyles}>
-            {task.description}
-          </Card.Text> */}
+          </ShowMoreText>
           <Card.Text className={styles.cardStatusStlyles}>
             Status: {task.status}
           </Card.Text>
@@ -75,7 +70,13 @@ class Task extends React.PureComponent {
               variant="info"
               className={styles.actionButton}
               disabled={disabled}
-              onClick={() => this.props.changeTaskStatus(task._id, {status: "done"}, "tasks")}
+              onClick={() =>
+                this.props.changeTaskStatus(
+                  task._id,
+                  { status: "done" },
+                  "tasks"
+                )
+              }
             >
               <FontAwesomeIcon icon={faClipboardCheck} />
             </Button>
@@ -84,7 +85,13 @@ class Task extends React.PureComponent {
               variant="warning"
               className={styles.actionButton}
               disabled={disabled}
-              onClick={() => this.props.changeTaskStatus(task._id, {status: "active"}, "tasks")}
+              onClick={() =>
+                this.props.changeTaskStatus(
+                  task._id,
+                  { status: "active" },
+                  "tasks"
+                )
+              }
             >
               <FontAwesomeIcon icon={faHistory} />
             </Button>
@@ -116,12 +123,12 @@ Task.propTypes = {
   onCheck: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   data: PropTypes.object.isRequired,
-  onEdit: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   removeTask,
-  changeTaskStatus
+  changeTaskStatus,
 };
 
 export default connect(null, mapDispatchToProps)(Task);

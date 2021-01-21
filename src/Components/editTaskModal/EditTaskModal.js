@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import { Button, Modal, FormControl } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { connect } from "react-redux";
-import {saveEdited} from "../../store/actions"
-// import ShowDate from "../../Helpers/ShowDate";
+import { saveEdited } from "../../store/actions";
 
 class EditTaskModal extends React.Component {
   constructor(props) {
@@ -69,12 +68,6 @@ class EditTaskModal extends React.Component {
             placeholder="Title"
             bsPrefix
           />
-          {/* <input
-            type="text"
-            className={styles.inputStyle}
-            value={description}
-            onChange={this.handleChange}
-          /> */}
           <FormControl
             className={styles.editDescriptionStyle}
             onChange={this.handleChange}
@@ -85,9 +78,6 @@ class EditTaskModal extends React.Component {
             aria-label="With textarea"
             bsPrefix
           />
-
-          {/* <ShowDate data={this.state.date} onChange={this.handleDateChange} /> */}
-
           <DatePicker
             selected={date}
             onChange={this.handleDateChange}
@@ -114,7 +104,7 @@ EditTaskModal.propTypes = {
 };
 
 const mapDispatchToProps = {
-  saveEdited
-}
+  saveEdited,
+};
 
 export default connect(null, mapDispatchToProps)(EditTaskModal);

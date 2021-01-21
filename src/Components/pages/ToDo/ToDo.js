@@ -98,12 +98,9 @@ class ToDo extends React.PureComponent {
       >
         <Container className={styles.contStyle}>
           <Search />
-          <Row className="justify-content-center text-center">
+          <Row className="justify-content-md-center">
             <Col
-              xs={12}
-              sm={10}
-              md={8}
-              lg={6}
+            xs lg="2"
               className={styles.todoButtonsStyles}
             >
               <Button
@@ -114,11 +111,12 @@ class ToDo extends React.PureComponent {
                 Add new task
               </Button>
             </Col>
-            <Col xs={1} md={4} className={styles.todoButtonsStyles}>
+            <Col xs lg="2" className={styles.todoButtonsStyles}>
               <Button
                 onClick={this.toggleConfirm}
                 variant="outline-danger"
                 disabled={!selectedTasks.size}
+                className={styles.remSelButtonsStyles}
               >
                 Remove selected
               </Button>

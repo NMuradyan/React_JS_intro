@@ -127,12 +127,13 @@ export function sendFormMessage(info) {
       .then((res) => {
         dispatch({
           type: actionTypes.GET_FORM_MESSAGE,
-          form: res,
-          info,
         });
       })
       .catch((err) => {
-        dispatch({ type: actionTypes.ERROR, error: err.message });
+        dispatch({
+          type: actionTypes.ERROR,
+          error: "Somthing wrong !!! Please check info one more time !!!",
+        });
       });
   };
 }

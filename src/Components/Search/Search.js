@@ -110,11 +110,11 @@ function Search(props) {
   };
 
   return (
-    <Navbar bg="light" expand="lg" variant="info" className={styles.manNavbar}>
+    <Navbar bg="light" expand="lg" className={styles.manNavbar}>
       <Navbar.Brand className={styles.navbarBrand}>Sort by</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+      <Navbar.Collapse id="basic-navbar-nav" className={styles.navCollapse}>
+        <Nav className={`mr-auto ${styles.navMainStyle}`}>
           <NavDropdown
             className={styles.navDropdown}
             title={status.value ? status.label : "Status"}

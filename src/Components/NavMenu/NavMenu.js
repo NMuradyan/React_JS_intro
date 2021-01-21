@@ -10,7 +10,7 @@ export default function NavMenu() {
   return (
     <div>
       <Navbar bg="light" expand="lg" className={styles.navMainStyle}>
-        <FontAwesomeIcon icon={faPenSquare} className={styles.navIconStyle} />
+          <FontAwesomeIcon icon={faPenSquare} className={styles.navIconStyle}/>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className={styles.navCollapse}>
           <Nav className={`mr-auto`}>

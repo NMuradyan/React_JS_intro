@@ -4,6 +4,10 @@
   color: #17a2b8;
   font-family: cursive;
 }
+.manNavbar {
+  margin-bottom: 10px;
+  color: #17a2b8;
+}
 .manNavbar .navbarBrand {
   color: #17a2b8;
 }
@@ -18,30 +22,8 @@
 }
 .navMainStyle .navDropdown a {
   font-family: cursive;
+  color: #63bbc9 !important;
 }
-.manNavbar {
-  margin-bottom: 10px;
-  color: #17a2b8;
-}
-/* .navbar-light .navbar-nav .nav-link a:hover {
-  color: rgb(196, 28, 28) !important;
-  }
-  .navbar-light .navbar-nav .nav-link a:focus {
-  color: rgb(48, 180, 76) !important;
-  } */
-/* .navItem + a {
-  color: #17a2b8!important;
-} */
-/* .navbar-light .navbar-nav .nav-link{
-  color: #17a2b8;
-} */
-/* .navDropdown:first-child {
-  color: #17a2b8;
-  font-family: cursive;
-} */
-/* .navDropdown>a:focus {
-  color: #17a2b8;
-} */
 .navItem {
   color: #17a2b8;
   font-family: cursive;
@@ -49,6 +31,10 @@
 .navItem:hover {
   color: #dc3545;
 }
-/* .dropdown-toggle.nav-link {
-  color: #17a2b8;
-} */
+.navItem:active {
+  background-color: #164147 !important;
+}
+.navItem .dropdown-item.active .dropdown-item:active{
+  
+  background-color: #2b6e79 !important;
+}

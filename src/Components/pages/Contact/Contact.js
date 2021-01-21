@@ -14,22 +14,17 @@ const allValues = {
 function Contact(props) {
   const [values, setValues] = useState(allValues);
 
-useEffect((values)=>{
-  if(!props.sendSuccessMessage){
-    setValues(values)
-  }
-  setValues(allValues)
-  
-}, [props.sendSuccessMessage])
+  useEffect(
+    (values) => {
+      if (!props.sendSuccessMessage) {
+        setValues(values);
+      }
+      setValues(allValues);
+    },
+    [props.sendSuccessMessage]
+  );
 
-  const sendFormMessage = (e) => {
-    e.preventDefault();
-// let {name, mail, message} = values;
-//     if(!name || !mail || message){
-//       setValues(values)
-//     }
-//     return;
-    
+  const sendFormMessage = () => {
     props.sendFormMessage(values);
   };
 
@@ -90,10 +85,10 @@ useEffect((values)=>{
 }
 
 const mapStateToProps = (state) => {
-return {
-  sendSuccessMessage: state.sendSuccessMessage
-}
-}
+  return {
+    sendSuccessMessage: state.sendSuccessMessage,
+  };
+};
 
 const mapDispatchToProps = {
   sendFormMessage,

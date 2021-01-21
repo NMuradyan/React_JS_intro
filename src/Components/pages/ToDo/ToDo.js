@@ -99,10 +99,7 @@ class ToDo extends React.PureComponent {
         <Container className={styles.contStyle}>
           <Search />
           <Row className="justify-content-md-center">
-            <Col
-            xs lg="2"
-              className={styles.todoButtonsStyles}
-            >
+            <Col xs lg="2" className={styles.todoButtonsStyles}>
               <Button
                 onClick={this.toggleNewTaskModal}
                 variant="outline-info"

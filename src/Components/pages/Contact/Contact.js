@@ -14,15 +14,11 @@ const allValues = {
 function Contact(props) {
   const [values, setValues] = useState(allValues);
 
-  useEffect(
-    (values) => {
-      if (!props.sendSuccessMessage) {
-        setValues(values);
-      }
+  useEffect(() => {
+    if (props.sendSuccessMessage) {
       setValues(allValues);
-    },
-    [props.sendSuccessMessage]
-  );
+    }
+  }, [props.sendSuccessMessage]);
 
   const sendFormMessage = () => {
     props.sendFormMessage(values);
